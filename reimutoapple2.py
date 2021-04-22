@@ -1,4 +1,4 @@
-from pydub.playback import play #backspa
+from pydub.playback import play
 from pydub import AudioSegment
 from pynput import keyboard
 import sys
@@ -9,18 +9,15 @@ current = set()
 
 def on_press(key):
     global keys
-    current.add(key) #reim
-    print("Key pressed: {0}".format(key))
+    current.add(key)
     try:
         keys=keys+f'{key.char}'
-        print(keys)
         if keys.endswith(names):
-                bad_apple = AudioSegment.from_file('bad apple.wav')
+                bad_apple = AudioSegment.from_file('bad apple.mp3')
                 play(bad_apple)
     except AttributeError:
         if key==keyboard.Key.backspace:
             keys=keys[:-1]
-            print(":o")
         else: pass
     if key == keyboard.Key.esc:
         listener.stop()
